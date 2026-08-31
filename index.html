@@ -64,7 +64,7 @@ linear-gradient(#d9c2a9 0 68%,#9e786b 68% 68.8%,#8c675e 68.8% 100%)}
 <div class="frame f1 object" onclick="photo(0)"><img src="images/IMG_3050.jpeg"></div>
 <div class="frame f2 object" onclick="photo(1)"><img src="images/IMG_2456.jpeg"></div>
 <div class="frame f3 object" onclick="photo(2)"><img src="images/IMG_2858.jpeg"></div>
-<div class="frame f4 object" onclick="photo(3)"><img src="images/IMG_0931.jpeg"></div>
+<div class="frame f4 object" onclick="photo(3)"><img src="images/IMG_3010.jpeg"></div>
 <div class="frame f5 object" onclick="photo(4)"><img src="images/IMG_0667.jpeg"></div>
 
 <div class="envelope env1 object" onclick="letter(0)"><div class="seal">♥</div></div>
@@ -95,14 +95,14 @@ const PHOTOS = [
  ["images/IMG_3050.jpeg","Evidence photo #01 — two suspects pretending they don't know the camera is on. Classic behavior."],
  ["images/IMG_2456.jpeg","Exhibit A: the prosecution's strongest argument for 'we were definitely having a good time.'"],
  ["images/IMG_2858.jpeg","Field report: Sauri deploys sunglasses. Shem immediately attempts the same level of cool. Results inconclusive."],
- ["images/IMG_0931.jpeg","Witness statement: one passenger was asleep, one was causing problems. We will not name names."],
+ ["images/IMG_3010.jpeg","Witness statement: one passenger was asleep, one was causing problems. We will not name names."],
  ["images/IMG_0667.jpeg","Archived footage of two people who absolutely had no idea this would become birthday evidence."]
 ];
 const LETTERS = [
- ["FRIEND #1","Mitanshi","Hey Winnie, I know there have been a lot of ups and downs between us but I hope you know that I love you the most and I can’t wait to come live with you!]\\n\\nP.S. [Your Piglet]",
- ["FRIEND #2","Aditya","Dear Sauri, I found you when I was unsure of what to make of life and now the only one I turn to when life gets tough is you. Happy birthday sissy, thank you for being you :) I love you more than I ever express.] Love, Adi",
- ["FRIEND #3","Shivanshu","To Sauri, I may not share the sheer enthusiasm you have when it comes to Asian food, but there’s one thing I deeply admire and, in a way, truly share with you — that quiet sense of pride in knowing you’ve chosen to carve your own path. Chopsticks] You’ve taken the road less travelled, made decisions that weren’t always easy, and had the courage to choose what felt right for you. And I hope you always remember how special that is. Not everyone has the courage to walk their own path, and I hope you never lose that part of yourself.\\n\\n Stay strong, stay curious, stay connected, and keep being unapologetically you. And, of course, stay “sada salty” — because some things should never change.",
- ["FRIEND #4","Shivani","Dear birthday girl, Happiest birthday to yous. I will personally send you my wishes cause this guy won't let me think in peace]\\n\\n25 looks suspiciously good on you. Please continue being iconic."]
+ ["FRIEND #1","Mitanshi","Hey Winnie,\\n\\n[I know there have been a lot of ups and downs between us but I hope you know that I love you the most and I can’t wait to come live with you!]\\n\\nP.S. [Your Piglet]"],
+ ["FRIEND #2","Aditya","Dear Sauri,\\n\\n[I found you when I was unsure of what to make of life and now the only one I turn to when life gets tough is you. Happy birthday sissy, thank you for being you :) I love you more than I ever express.]\\n\\n Love, Adi"],
+ ["FRIEND #3","Shivanshu","To Sauri,\\n\\n[I may not share the sheer enthusiasm you have when it comes to Asian food, but there’s one thing I deeply admire and, in a way, truly share with you — that quiet sense of pride in knowing you’ve chosen to carve your own path. Chopsticks]\\n\\nYou’ve taken the road less travelled, made decisions that weren’t always easy, and had the courage to choose what felt right for you. And I hope you always remember how special that is. Not everyone has the courage to walk their own path, and I hope you never lose that part of yourself.\\n\\n Stay strong, stay curious, stay connected, and keep being unapologetically you. And, of course, stay “sada salty” — because some things should never change."],
+ ["FRIEND #4","Shivani","Dear birthday girl,\\n\\n[Happiest birthday to yous. I will personally send you my wishes cause this guy won't let me think in peace]\\n\\n25 looks suspiciously good on you. Please continue being iconic."]
 ];
 let found = new Set(), audio = new Audio(), micStream=null, audioCtx=null, analyser=null, raf=null, blowStart=0, blown=0;
 
@@ -119,10 +119,10 @@ function catTalk(){const lines=["Meow. I have reviewed the evidence. You are cut
 function openStory(){show(`<div class="modal book"><button class="close" onclick="closeModal()">×</button><div class="bookHeader"><h2>Seattle's Protective Paws</h2><small>A birthday edition · scroll to read</small></div><div class="bookBody">${esc(STORY)}</div></div>`)}
 function openLaptop(){show(`<div class="modal paper"><button class="close" onclick="closeModal()">×</button><div class="stamp">LAPTOP FORENSICS</div><h2>CASE NOTES</h2><div class="hand">A tiny private investigation board.</div><p class="small">Four birthday letters. Five photographic exhibits. One suspiciously well-loved story book. One cake that appears to be waiting for a very specific ritual.</p><p class="small">Current theory: someone has gone to unreasonable lengths to make Sauri feel loved.</p><p class="small">Status: highly incriminating.</p></div>`)}
 const SONGS = [
-  ["Bobby Caldwell - What You Wont Do For Love.mp3","Track 01 · placeholder"],
-  ["Earth Wind Fire - September.mp3","Track 02 · placeholder"],
-  ["The Heartless Bastards - Only For You.mp3","Track 03 · placeholder"],
-  ["Toto - Hold The Line.mp3","Track 04 · placeholder"]
+  ["song1.mp3","Track 01 · placeholder"],
+  ["song2.mp3","Track 02 · placeholder"],
+  ["song3.mp3","Track 03 · placeholder"],
+  ["song4.mp3","Track 04 · placeholder"]
 ];
 function openPhone(){show(`<div class="modal phoneModal"><button class="close" onclick="closeModal()">×</button><div class="phoneScreen"><div class="album"><img src="${PHOTOS[0][0]}" id="albumImg"></div><div class="track" id="track">Choose a song</div><div class="controls"><button onclick="prevPhoto()">◀</button><button onclick="toggleAudio()" id="playBtn">PLAY ▶</button><button onclick="nextPhoto()">▶</button></div><div class="songList">${SONGS.map((song,i)=>`<button class="songBtn" onclick="playSong(${i})"><span>${i+1}</span>${song[1]}</button>`).join('')}</div></div><div class="small" style="text-align:center">Hardcoded soundtrack slots: add your four MP3 files to the <b>audio</b> folder using the filenames in SONGS above.</div></div>`)}
 let p=0;function prevPhoto(){p=(p+PHOTOS.length-1)%PHOTOS.length;document.getElementById('albumImg').src=PHOTOS[p][0]}function nextPhoto(){p=(p+1)%PHOTOS.length;document.getElementById('albumImg').src=PHOTOS[p][0]}
